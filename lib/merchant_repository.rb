@@ -1,6 +1,6 @@
 require_relative 'merchant'
 class MerchantRepository
-  attr_reader :merchant
+  attr_reader :merchants
 
   def initialize(merchants)
     @merchants = merchants
@@ -13,12 +13,8 @@ class MerchantRepository
   end
 
   def find_by_name(x)
-    if merchant.name != x
-      []
-    else
-      merchants.select do |merchant|
-        merchant.name == x
-      end
+    merchants.select do |merchant|
+      merchant.name == x
     end
   end
 end
