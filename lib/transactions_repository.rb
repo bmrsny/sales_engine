@@ -3,7 +3,7 @@ class TransactionsRepository
   attr_reader :transactions
 
   def initialize(transactions)
-    @transactions = transactions
+    @transactions = transactions.map { |data| Item.new(data) }
   end
 
   def find_by_id(x)

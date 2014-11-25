@@ -13,6 +13,9 @@ require_relative 'transactions'
 require_relative 'transactions_repository'
 
 class SalesEngine
-  
+  def initialize(dir="./data/") 
+
+  end
+
 
 end

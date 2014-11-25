@@ -3,7 +3,7 @@ class CustomerRepository
   attr_reader :customers
 
   def initialize(customers)
-    @customers = customers
+    @customers = customers.map { |data| Customer.new(data) }
   end
 
   def find_by_id(x)
