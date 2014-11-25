@@ -4,7 +4,7 @@ require_relative '../lib/invoice_items_repository'
 class InvoiceItemsRepositoryTest < Minitest::Test
 
   def test_can_retrieve_attributes
-    transactions = [
+    invoice_items = [
       {id: "25", item_id: "928", invoice_id: "5", quantity: "9", unit_price: "32346", created_at: "2012-03-27 14:54:10 UTC", updated_at: "2012-03-27 14:54:10 UTC" },
       {id: "26", item_id: "936", invoice_id: "5", quantity: "10", unit_price: "73408", created_at: "2012-03-27 14:54:10 UTC", updated_at: "2012-03-27 14:54:10 UTC" },
       {id: "26", item_id: "1867", invoice_id: "6", quantity: "2", unit_price: "8342", created_at: "2012-03-27 14:54:10 UTC", updated_at: "2012-03-27 14:54:10 UTC" }
