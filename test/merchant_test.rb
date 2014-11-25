@@ -6,7 +6,7 @@ class MerchantTest < Minitest::Test
     data = {
       id: '1',
       name: 'Shroeder-Jerde',
-      created_at: '2012-03-27 14:53:59 UTC' ,
+      created_at: '2012-03-27 14:53:59 UTC',
       updated_at: '2012-03-27 14:53:59 UTC'
     }
     merchant = Merchant.new(data)
