@@ -1,7 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/brandonmrsny/Turing/sales_engine/lib/items_repository.rb": [
+      "/Users/brandonmrsny/Turing/sales_engine/lib/customer_repository.rb": [
         1,
         1,
         1,
@@ -11,8 +11,8 @@
         null,
         null,
         1,
-        2,
-        6,
+        1,
+        3,
         null,
         null,
         null,
@@ -23,25 +23,17 @@
         null,
         null,
         1,
-        0,
-        0,
+        1,
+        3,
         null,
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/items.rb": [
+      "/Users/brandonmrsny/Turing/sales_engine/lib/customer.rb": [
         1,
         1,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         1,
-        9,
-        9,
         9,
         9,
         9,
@@ -51,6 +43,6 @@
         null
       ]
     },
-    "timestamp": 1416935114
+    "timestamp": 1416935587
   }
 }
