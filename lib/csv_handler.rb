@@ -7,3 +7,7 @@ class CsvHandler
     @data = CSV.open(filename, headers: true, header_converters: :symbol)
   end
 end
+
+
+# csv = CsvHandler.new("./data/fixtures/merchants.csv")
+# csv.data
