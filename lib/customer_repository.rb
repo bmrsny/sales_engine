@@ -1,6 +1,6 @@
 require_relative 'customer'
 class CustomerRepository
-  attr_reader :customer
+  attr_reader :customers
 
   def initialize(customers)
     @customers = customers
@@ -12,9 +12,15 @@ class CustomerRepository
     end
   end
 
-  def find_by_name(x)
+  def find_by_first_name(x)
     customers.select do |customer|
-      customer.name == x
+      customer.first_name == x
     end
   end
+
+    def find_by_last_name(x)
+      customers.select do |customer|
+        customer.last_name == x
+      end
+    end
 end
