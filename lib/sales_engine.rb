@@ -13,7 +13,10 @@ require_relative 'transactions'
 require_relative 'transactions_repository'
 
 class SalesEngine
-  def initialize(dir="./data/") 
+  attr_accessor :data, :merchant_repository, :customer_repository, :invoice_repository,
+                :transactions_repository, :invoice_items, :items_repository
+
+  def initialize(dir="./data/")
 
   end
 
