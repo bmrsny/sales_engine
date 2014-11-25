@@ -4,7 +4,7 @@ class InvoiceItemsRepository
   attr_reader :invoice_items
 
   def initialize(invoice_items)
-    @invoice_items = invoice_items
+    @invoice_items = invoice_items.map { |data| Merchant.new(data) }
   end
 
   def find_by_id(x)

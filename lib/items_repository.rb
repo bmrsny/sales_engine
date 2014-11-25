@@ -3,7 +3,7 @@ class ItemsRepository
   attr_reader :items
 
   def initialize(items)
-    @items = items
+    @items = items.map { |data| Item.new(data) }
   end
 
   def find_by_id(x)
