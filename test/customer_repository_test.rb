@@ -11,7 +11,7 @@ class CustomerRepositoryTest < Minitest::Test
       {id: "141", first_name: 'Oma', last_name: 'Johns', created_at: '2012-03-27 14:54:09 UTC', updated_at: '2012-03-27 14:54:43 UTC'}
     ].map { |row| Customer.new(row) }
 
-    @repository = CustomerRepository.new(customers)
+    @repository ||= CustomerRepository.new(customers)
   end
 
   def test_can_retrieve_by_id
@@ -23,7 +23,7 @@ class CustomerRepositoryTest < Minitest::Test
   def test_can_retrieve_by_first_name
     repository
     customers = repository.find_by_first_name('Joey')
-    assert_equal 1, customers.length
+    assert_equal 1, customers.first_name
   end
 
   def test_can_retrieve_by_last_name
@@ -42,7 +42,14 @@ class CustomerRepositoryTest < Minitest::Test
     repository
     customers = repository.all
     assert_equal 3, customers.count
-
   end
 
+    def test_can_find_all_customers_by_last_name
+      repository
+      customers = repository.find_all_by_first_name('Joey')
+      assert 1, customers.count
+      customers.each do |customer|
+        assert_equal 'Joey', customer.first_name
+      end
+  end
 end

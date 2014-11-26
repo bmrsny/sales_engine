@@ -30,6 +30,12 @@ class CustomerRepository
       end
     end
 
+    def find_all_by_first_name(first_name)
+      customers.select do |customer|
+        customer.first_name == first_name
+      end
+    end
+
     def random
       customers.sample
     end
