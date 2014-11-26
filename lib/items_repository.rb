@@ -3,7 +3,13 @@ class ItemsRepository
   attr_reader :items
 
   def initialize(items)
-    @items = items.map { |data| Item.new(data) }
+    @items = items
+  end
+
+  def self.build_items
+    data = Csv.open('./data/items.csv' headers: true, header_converters: :symbol)
+    rows = data.map { |row| Items.new(row) }
+    new(rows)
   end
 
   def find_by_id(x)

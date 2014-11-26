@@ -17,27 +17,27 @@ class SalesEngine
 
   def initialize(dir="./data/")
     @dir = dir
-    startup
+    #startup
   end
 
   def startup
-    # merchant = CsvHandler.new("#{dir}merchants.csv")
-    # Merchant_Repository.new(merchant.data)
+    merchant_objects = CsvHandler.new("#{dir}merchants.csv").build_merchants
+    @merchant_repository ||= MerchantRepository.new(merchant_objects)
 
     # customer = CsvHandler.new("#{dir}customers.csv")
-    # Customer_Repository.new(customer.data)
+    # CustomerRepository.new(customer.data)
 
     # invoice_items = CsvHandler.new("#{dir}invoice_itmes.csv")
-    # Invoice_Items_Repository.new(invoice_items.data)
+    # InvoiceItemsRepository.new(invoice_items.data)
 
     # items = CsvHandler.new("#{dir}items.csv")
-    # Items_Repository.new(items.data)
+    # ItemsRepository.new(items.data)
 
     # transactions = CsvHandler.new("#{dir}transactions.csv")
-    # Transactions_Repository.new(transactions.data)
+    # TransactionsRepository.new(transactions.data)
 
     # invoices = CsvHandler.new("#{dir}invoices.csv")
-    # Invoices_Repository.new(invoices.data)
+    # InvoicesRepository.new(invoices.data)
   end
 
 
