@@ -1,16 +1,17 @@
 require_relative 'merchant'
 require 'csv'
 class MerchantRepository
-  attr_reader :merchants
-              #:sales_engine
+  attr_reader :merchants,
+              :sales_engine
 
-  def initialize(merchants)
-    @merchants = merchants
+  def initialize(merchants, sales_engine)
+    @merchants    = merchants
+    @sales_engine = sales_engine
   end
 
   def self.build_merchants(filename='./data/merchants.csv')
     data = CSV.open(filename, headers: true, header_converters: :symbol)
-    rows = data.map { |row| Merchant.new(row) }
+    rows = data.map { |row| Merchant.new(row, sales_engine) }
     new(rows)
   end
 

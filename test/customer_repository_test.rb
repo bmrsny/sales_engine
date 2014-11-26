@@ -52,5 +52,4 @@ class CustomerRepositoryTest < Minitest::Test
         assert_equal 'Joey', customer.first_name
       end
   end
-
 end
