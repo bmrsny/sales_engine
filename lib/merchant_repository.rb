@@ -28,7 +28,6 @@ class MerchantRepository
   end
 
   def find_items_from(id)
-    puts 'Whoo in the repos'
-    #sales_engine.find_items_from_merchant_id(id)????
+    sales_engine.find_items_from_merchant(id)
   end
 end

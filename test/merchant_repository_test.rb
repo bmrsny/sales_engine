@@ -31,4 +31,12 @@ class MerchantRepositoryTest < Minitest::Test
   def test_it_has_a_sales_engine
     assert repository.sales_engine
   end
+
+  def test_it_delegates_items_to_the_sales_engine
+    sales_engine
+    repository
+    sales_engine.expect(:find_items_from_merchant, nil, [1])
+    repository.find_items_from(1)
+    sales_engine.verify
+  end
 end
