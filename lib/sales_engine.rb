@@ -13,32 +13,27 @@ require_relative 'transactions'
 require_relative 'transactions_repository'
 
 class SalesEngine
-  attr_accessor :dir
+  attr_accessor :dir, :merchant_repository, :customer_repository,
+                :items_repository, :invoice_items_repository,
+                :transactions_repository, :invoices_repository
 
   def initialize(dir="./data/")
     @dir = dir
-    #startup
+    startup
   end
 
   def startup
-    merchant_objects = CsvHandler.new("#{dir}merchants.csv").build_merchants
-    @merchant_repository ||= MerchantRepository.new(merchant_objects)
 
-    # customer = CsvHandler.new("#{dir}customers.csv")
-    # CustomerRepository.new(customer.data)
+    @merchant_repository ||= MerchantRepository.build_merchants("#{dir}merchants.csv")
 
-    # invoice_items = CsvHandler.new("#{dir}invoice_itmes.csv")
-    # InvoiceItemsRepository.new(invoice_items.data)
+    @customer_repository ||= CustomerRepository.build_customers("#{dir}customers.csv")
 
-    # items = CsvHandler.new("#{dir}items.csv")
-    # ItemsRepository.new(items.data)
+    @invoice_items_repository ||= InvoiceItemsRepository.build_invoice_items("#{dir}invoice_items.csv")
 
-    # transactions = CsvHandler.new("#{dir}transactions.csv")
-    # TransactionsRepository.new(transactions.data)
+    @items ||= ItemsRepositor.build_items("#{dir}items.csv")
 
-    # invoices = CsvHandler.new("#{dir}invoices.csv")
-    # InvoicesRepository.new(invoices.data)
+    @transactions ||= Transactions.build_transactions("#{dir}transactions.csv")
+
+    @invoices ||= Invoices.build_invoices("#{dir}invoices.csv")
   end
-
-
 end

@@ -6,8 +6,8 @@ class ItemsRepository
     @items = items
   end
 
-  def self.build_items
-    data = Csv.open('./data/items.csv' headers: true, header_converters: :symbol)
+  def self.build_items(filename='./data/items.csv')
+    data = Csv.open(filename, headers: true, header_converters: :symbol)
     rows = data.map { |row| Items.new(row) }
     new(rows)
   end

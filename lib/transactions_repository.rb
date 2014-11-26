@@ -6,8 +6,8 @@ class TransactionsRepository
     @transactions = transactions
   end
 
-  def self.build_transactions
-    data = Csv.open("./data/transactions.csv" headers: true, header_converters: :symbol)
+  def self.build_transactions(filename="./data/transactions.csv")
+    data = Csv.open(filename, headers: true, header_converters: :symbol)
     rows = data.map { |row| Transactons.new(row) }
     new(rows)
   end

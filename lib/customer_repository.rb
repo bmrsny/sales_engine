@@ -6,8 +6,8 @@ class CustomerRepository
     @customers = customers
   end
 
-  def self.build_customer
-    data = Csv.open('./data/customer.csv', headers: true, header_converters: :symbol)
+  def self.build_customer(filename='./data/customer.csv')
+    data = Csv.open(filename, headers: true, header_converters: :symbol)
     rows = data.map { |row| Customer.new(row) }
     new(rows)
   end

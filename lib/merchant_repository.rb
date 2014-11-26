@@ -7,8 +7,8 @@ class MerchantRepository
     @merchants = merchants
   end
 
-  def self.build_merchants
-    data = CSV.open('./data/merchants.csv', headers: true, header_converters: :symbol)
+  def self.build_merchants(filename='./data/merchants.csv')
+    data = CSV.open(filename, headers: true, header_converters: :symbol)
     rows = data.map { |row| Merchant.new(row) }
     new(rows)
   end
