@@ -2,6 +2,7 @@ require_relative 'merchant'
 require 'csv'
 class MerchantRepository
   attr_reader :merchants
+              #:sales_engine
 
   def initialize(merchants)
     @merchants = merchants
@@ -23,5 +24,10 @@ class MerchantRepository
     merchants.select do |merchant|
       merchant.name == x
     end
+  end
+
+  def find_items_from(id)
+    puts 'Whoo in the repos'
+    #sales_engine.find_items_from_merchant_id(id)????
   end
 end
