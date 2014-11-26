@@ -29,4 +29,12 @@ class CustomerRepository
         customer.last_name == x
       end
     end
+
+    def random
+      customers.sample
+    end
+
+    def all
+      customers
+    end
 end

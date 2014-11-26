@@ -31,4 +31,18 @@ class CustomerRepositoryTest < Minitest::Test
     customers = repository.find_by_last_name('Ondricka')
     assert_equal 1, customers.length
   end
+
+  def test_can_find_a_random_customer
+    repository
+    customers = repository.random
+    assert customers, customers
+  end
+
+  def test_can_find_all_customers
+    repository
+    customers = repository.all
+    assert_equal 3, customers.count
+
+  end
+
 end

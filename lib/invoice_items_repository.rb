@@ -7,7 +7,7 @@ class InvoiceItemsRepository
     @invoice_items = invoice_items
   end
 
-  def self.build_invoice_item(filename="./data/invoice_items.csv")
+  def self.build_invoice_items(filename="./data/invoice_items.csv")
     data = Csv.open(filename, headers: true, header_converters: :symbol)
     rows = csv.map { |row| InvoiceItems.new(row) }
     new(rows)
