@@ -3,7 +3,13 @@ class TransactionsRepository
   attr_reader :transactions
 
   def initialize(transactions)
-    @transactions = transactions.map { |data| Item.new(data) }
+    @transactions = transactions
+  end
+
+  def self.build_transactions(filename="./data/transactions.csv")
+    data = Csv.open(filename, headers: true, header_converters: :symbol)
+    rows = data.map { |row| Transactons.new(row) }
+    new(rows)
   end
 
   def find_by_id(x)

@@ -4,7 +4,13 @@ class InvoiceItemsRepository
   attr_reader :invoice_items
 
   def initialize(invoice_items)
-    @invoice_items = invoice_items.map { |data| Merchant.new(data) }
+    @invoice_items = invoice_items
+  end
+
+  def self.build_invoice_item(filename="./data/invoice_items.csv")
+    data = Csv.open(filename, headers: true, header_converters: :symbol)
+    rows = csv.map { |row| InvoiceItems.new(row) }
+    new(rows)
   end
 
   def find_by_id(x)
