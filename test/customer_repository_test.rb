@@ -41,4 +41,24 @@ class CustomerRepositoryTest < Minitest::Test
       assert 1, customer.count
   end
 
+  def test_can_find_by_updated_at
+    customer = repository.find_by_updated_at("2012-03-27 14:54:09 UTC")
+    assert_equal 1, customer.id
+  end
+
+  def test_can_find_by_created_at
+    customer = repository.find_by_created_at("2012-03-27 14:54:09 UTC")
+    assert_equal 1, customer.id
+  end
+
+  def test_can_find_all_by_updated_at
+    customer = repository.find_all_by_updated_at("2012-03-27 14:54:10 UTC")
+    assert_equal 6, customer.count
+  end
+
+  def test_can_find_all_by_created_at
+    customer = repository.find_all_by_created_at("2012-03-27 14:54:10 UTC")
+    assert_equal 6, customer.count
+  end
+
 end
