@@ -19,12 +19,6 @@ class SalesEngine
 
   def initialize(dir="./data/")
     @dir = dir
-    # @customer_repository
-    # @invoices_repository
-    # @invoice_items_repository
-    # @items_repository
-    # @merchant_repository
-    # @transactions_repository
     startup
   end
 
@@ -32,7 +26,7 @@ class SalesEngine
 
     @merchant_repository ||= MerchantRepository.new(self)
 
-    @customer_repository ||= CustomerRepository.build_customers("#{dir}customers.csv")
+    #@customer_repository ||= CustomerRepository.build_customers("#{dir}customers.csv")
 
     #@invoice_items_repository ||= InvoiceItemsRepository.build_invoice_items("#{dir}invoice_items.csv")
 
