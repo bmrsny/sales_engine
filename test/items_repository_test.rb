@@ -24,4 +24,64 @@ class ItemsRepositoryTest < Minitest::Test
     items = repository.find_by_id(4)
     assert_equal "Item Nemo Facere", items.name
   end
+
+  def test_can_find_by_name
+    items = repository.find_by_name("Item Autem Minima")
+    assert_equal 2, items.id
+  end
+
+  def test_can_find_by_unit_price
+    items = repository.find_by_unit_price(75107)
+    assert_equal 1, items.id
+  end
+
+  def test_can_find_by_merchant_id
+    items = repository.find_by_merchant_id(1)
+    assert_equal 1, items.id
+  end
+
+  def test_can_find_by_created_at
+    items = repository.find_by_created_at("2012-03-27 14:53:59 UTC")
+    assert_equal 1, items.id
+  end
+
+  def test_can_find_by_updated_at
+    items = repository.find_by_updated_at("2012-03-27 14:53:59 UTC")
+    assert_equal 1, items.id
+  end
+
+  def test_can_find_all_by_id
+    items = repository.find_all_by_id(1 )
+    assert_equal 1, items.count
+  end
+
+  def test_can_find_all_by_name
+    items = repository.find_all_by_name("Item Autem Minima")
+    assert_equal 1, items.count
+  end
+
+  def test_can_find_all_by_unit_price
+    items = repository.find_all_by_unit_price(75107)
+    assert_equal 1, items.count
+  end
+
+  def test_can_find_all_by_created_at
+    items = repository.find_all_by_created_at("2012-03-27 14:53:59 UTC")
+    assert_equal 24, items.count
+  end
+
+  def test_can_find_all_by_updated_at
+    items = repository.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
+    assert_equal 24, items.count
+  end
+
+  def test_can_find_all_items
+    items = repository.all
+    assert items
+  end
+
+  def test_can_find_a_random_item
+    items = repository.random
+    assert_instance_of Items, items
+  end
 end
