@@ -1,58 +1,91 @@
 require_relative 'invoices'
-
+require_relative 'csv_handler'
 class InvoicesRepository
-  attr_reader :invoices
+  attr_reader :invoices,
+              :sales_engine,
+              :data
 
-  def initialize(invoices)
-    @invoices = invoices
+  def initialize(file_name, parent)
+    @data         = CSVHandler.load_data(file_name)
+    @invoices     = load_invoices
+    @sales_engine = parent
+  end
+
+  def load_invoices
+    data.map do |row|
+      Invoices.new(row, self)
+    end
   end
 
   def find_by_id(x)
-    invoices.select do |invoice|
+    invoices.find do |invoice|
       invoice.id == x
     end
   end
 
   def find_by_customer_id(x)
-    invoices.select do |invoice|
+    invoices.find do |invoice|
       invoice.customer_id == x
     end
   end
 
   def find_by_merchant_id(x)
-    invoices.select do |invoice|
+    invoices.find do |invoice|
       invoice.merchant_id == x
     end
   end
 
   def find_by_status(x)
+    invoices.find do |invoice|
+      invoice.status == x
+    end
+  end
+
+  def find_by_created_at(created_at)
+    invoices.find {|invoice| invoice.created_at == created_at}
+  end
+
+  def find_by_updated_at(updated_at)
+    invoices.find {|invoice| invoice.updated_at == updated_at}
+  end
+
+  def find_all_by_id(x)
+    invoices.select do |invoice|
+      invoice.id == x
+    end
+  end
+
+  def find_all_by_customer_id(x)
+    invoices.select do |invoice|
+      invoice.customer_id == x
+    end
+  end
+
+  def find_all_by_merchant_id(x)
+    invoices.select do |invoice|
+      invoice.merchant_id == x
+    end
+  end
+
+  def find_all_by_status(x)
     invoices.select do |invoice|
       invoice.status == x
     end
   end
 
-  # def find_all_by_id(x)
-  #   invoices.select do |invoice|
-  #     invoice.all_by_id == x
-  #   end
-  # end
-  #
-  # def find_all_by_customer_id(x)
-  #   invoices.select do |invoice|
-  #     invoice.all_by_item_id == x
-  #   end
-  # end
-  #
-  # def find_all_by_merchant_id(x)
-  #   invoices.select do |invoice|
-  #     invoice.all_by_invoice_id == x
-  #   end
-  # end
-  #
-  # def find_all_by_status(x)
-  #   invoices.select do |invoice|
-  #     invoice.all_by_quantity == x
-  #   end
-  # end
+  def find_all_by_created_at(created_at)
+    invoices.select {|invoice| invoice.created_at == created_at}
+  end
 
+  def find_all_by_updated_at(updated_at)
+    invoices.select {|invoice| invoice.updated_at == updated_at}
+  end
+
+  def all
+    invoices
+  end
+
+  def random
+    invoices.sample
+  end
 end
