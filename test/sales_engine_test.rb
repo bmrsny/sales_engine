@@ -5,17 +5,19 @@ class SalesEngineTest < Minitest::Test
   attr_reader :sales_engine, :customer_repository
 
   def setup
-    @sales_engine = SalesEngine.new
+    @sales_engine = SalesEngine.new('data/fixtures/')
     sales_engine.startup
   end
 
+  def test_there_is_an_instance_of_sales_engine
+    assert sales_engine
+  end
+
   def test_there_is_a_customer_repository_on_startup
-    assert_equal 1001, sales_engine.customer_repository.customer.count
+    sales_engine.merchant_repository
   end
 
   def test_there_is_a_merchant_repository_on_startup
-    assert_equal 33, sales_engine.merchant_repository.merchant.count
-
-
+    sales_engine.customer_repository
   end
 end

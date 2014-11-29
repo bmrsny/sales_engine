@@ -24,17 +24,17 @@ class SalesEngine
 
   def startup
 
-    @merchant_repository ||= MerchantRepository.new(self)
+    @merchant_repository = MerchantRepository.new("#{dir}merchants.csv", self)
 
-    #@customer_repository ||= CustomerRepository.build_customers("#{dir}customers.csv")
+    @customer_repository = CustomerRepository.new("#{dir}customers.csv", self)
 
-    #@invoice_items_repository ||= InvoiceItemsRepository.build_invoice_items("#{dir}invoice_items.csv")
+    @invoice_items_repository ||= InvoiceItemsRepository.new("#{dir}invoice_items.csv", self)
 
-    #@items ||= ItemsRepositor.build_items("#{dir}items.csv")
+    @items ||= ItemsRepository.new("#{dir}items.csv", self)
 
-    #@transactions ||= Transactions.build_transactions("#{dir}transactions.csv")
+    @transactions ||= TransactionsRepository.new("#{dir}transactions.csv", self)
 
-    #@invoices ||= Invoices.build_invoices("#{dir}invoices.csv")
+    @invoices ||= InvoicesRepository.new("#{dir}invoices.csv", self)
   end
 
   # def find_items_from_merchant(id)
