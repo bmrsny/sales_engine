@@ -1,6 +1,7 @@
 require 'csv'                                # => true
 require_relative 'merchant'                  # => true
-require_relative 'merchant_repository'       # => true
+# require_relative 'merchant_repository'       # => true
+require './lib/merchant_repository'
 require_relative 'customer'                  # => true
 require_relative 'customer_repository'       # => true
 require_relative 'invoice_items'             # => true
@@ -24,20 +25,24 @@ class SalesEngine
 
   def startup
 
-    @merchant_repository = MerchantRepository.new("#{dir}merchants.csv", self)
+    @merchant_repository ||= MerchantRepository.new("#{dir}merchants.csv", self)
 
-    @customer_repository = CustomerRepository.new("#{dir}customers.csv", self)
+    @customer_repository ||= CustomerRepository.new("#{dir}customers.csv", self)
 
     @invoice_items_repository ||= InvoiceItemsRepository.new("#{dir}invoice_items.csv", self)
 
-    @items ||= ItemsRepository.new("#{dir}items.csv", self)
+    @items_repository ||= ItemsRepository.new("#{dir}items.csv", self)
 
-    @transactions ||= TransactionsRepository.new("#{dir}transactions.csv", self)
+    @transactions_repository ||= TransactionsRepository.new("#{dir}transactions.csv", self)
 
-    @invoices ||= InvoicesRepository.new("#{dir}invoices.csv", self)
+    @invoices_repository ||= InvoicesRepository.new("#{dir}invoices.csv", self)
   end
 
   # def find_items_from_merchant(id)
+  #   items_repository.find_all_by_merchant_id(id)
+  # end
   #
+  # def find_invoices_from_merchant_id(id)
+  #   invoices_repository.find_all_by_merchant_id(id)
   # end
 end

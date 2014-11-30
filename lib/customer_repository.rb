@@ -7,12 +7,12 @@ class CustomerRepository
 
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
-    @customers    = load_customer
+    @customers    = customers.class == Array ? customers : load_customer
     @sales_engine = parent
   end
 
   def load_customer
-    data.map { |row| Customer.new(row, self) }
+    customers = data.map { |row| Customer.new(row, self) }
   end
 
   def find_by_id(x)

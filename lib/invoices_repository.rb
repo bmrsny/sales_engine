@@ -7,12 +7,12 @@ class InvoicesRepository
 
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
-    @invoices     = load_invoices
+    @invoices     = invoices.class == Array ? invoices : load_invoices
     @sales_engine = parent
   end
 
   def load_invoices
-    data.map do |row|
+    invoices = data.map do |row|
       Invoices.new(row, self)
     end
   end

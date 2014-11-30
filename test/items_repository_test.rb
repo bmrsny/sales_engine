@@ -84,4 +84,9 @@ class ItemsRepositoryTest < Minitest::Test
     items = repository.random
     assert_instance_of Items, items
   end
+
+  def test_can_find_all_by_merchant_id
+    items = repository.find_all_by_merchant_id(1)
+    assert_equal 15, items.count
+  end
 end
