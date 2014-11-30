@@ -37,13 +37,13 @@ class SalesEngineTest < Minitest::Test
     sales_engine.invoices_repository
   end
 
-  # def test_can_find_items_from_merchant_id
-  #   merchant = sales_engine.merchant_repository.find_items_from(1)
-  #   assert_equal 10, merchant.items.count
-  # end
-  #
-  # def test_can_find_invoices_from_merchant_id
-  #   merchant = sales_engine.merchant_repository.find_invoices_from(1)
-  #   assert_equal 10, merchant.invoices.count
-  # end
+  def test_can_find_items_from_merchant_id
+    merchant = sales_engine.merchant_repository.find_items_from(1)
+    assert_equal 15, merchant.count
+  end
+
+  def test_can_find_invoices_from_merchant_id
+    merchant = sales_engine.merchant_repository.find_invoices_from(26)
+    assert_equal 1, merchant.count
+  end
 end
