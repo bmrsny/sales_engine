@@ -7,12 +7,18 @@ class MerchantRepository
 
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
-    @merchants    = load_merch
+    @merchants    = merchants.class == Array ? merchants : load_merch
     @sales_engine = parent
   end
 
+  # def initialize(file_name, parent)
+  #   @data         = CSVHandler.load_data(file_name)
+  #   @merchants    = load_merch
+  #   @sales_engine = parent
+  # end
+
   def load_merch
-    data.map do |row|
+    merchants = data.map do |row|
       Merchant.new(row, self)
     end
   end
@@ -75,5 +81,9 @@ class MerchantRepository
 
   def find_items_from(id)
     sales_engine.find_items_from_merchant(id)
+  end
+
+    def find_invoices_from(id)
+    sales_engine.find_invoices_from_merchant_id(id)
   end
 end

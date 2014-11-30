@@ -5,14 +5,20 @@ class ItemsRepository
               :sales_engine,
               :data
 
+  # def initialize(file_name, parent)
+  #   @data         = CSVHandler.load_data(file_name)
+  #   @items        = []
+  #   @sales_engine = parent
+  # end
+
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
-    @items        = load_items
+    @items        = items.class == Array ? items : load_items
     @sales_engine = parent
   end
 
   def load_items
-    data.map do |row|
+    items = data.map do |row|
       Items.new(row, self)
     end
   end
@@ -65,6 +71,10 @@ class ItemsRepository
 
   def find_all_by_unit_price(price)
     items.select { |item| item.unit_price == price }
+  end
+
+  def find_all_by_merchant_id(id)
+    items.select {|item| item.merchant_id == id}
   end
 
   def all
