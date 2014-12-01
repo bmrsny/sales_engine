@@ -44,4 +44,8 @@ class SalesEngine
   def find_invoices_from_merchant_id(id)
     invoices_repository.find_all_by_merchant_id(id)
   end
+
+  def find_invoices_from_customer_id(id)
+    invoices_repository.find_all_by_customer_id(id)
+  end
 end

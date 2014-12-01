@@ -46,4 +46,9 @@ class SalesEngineTest < Minitest::Test
     merchant = sales_engine.merchant_repository.find_invoices_from(26)
     assert_equal 1, merchant.count
   end
+
+  def test_can_find_invoices_from_customer_id
+    customer = sales_engine.customer_repository.find_invoices_from(7)
+    assert_equal 3, customer.count
+  end
 end

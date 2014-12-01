@@ -76,4 +76,8 @@ class CustomerRepository
     def all
       customers
     end
+
+    def find_invoices_from(id)
+      sales_engine.find_invoices_from_customer_id(id)
+    end
 end
