@@ -85,4 +85,8 @@ class InvoicesRepositoryTest < Minitest::Test
     invoices = repository.find_all_by_updated_at("2012-03-07 21:54:10 UTC")
     assert_equal 1, invoices.count
   end
+
+  def find_customers_from(id)
+    sales_engine.find_customers_from_invoice_id(id)
+  end
 end

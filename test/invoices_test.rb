@@ -27,6 +27,8 @@ class InvoicesTest < Minitest::Test
   end
 
   def test_can_find_customers_by_invoice_id
-
+    parent.expect(:find_customers_from, nil, [10])
+    invoice.customers
+    parent.verify
   end
 end
