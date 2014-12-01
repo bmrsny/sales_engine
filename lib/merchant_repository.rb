@@ -11,12 +11,6 @@ class MerchantRepository
     @sales_engine = parent
   end
 
-  # def initialize(file_name, parent)
-  #   @data         = CSVHandler.load_data(file_name)
-  #   @merchants    = load_merch
-  #   @sales_engine = parent
-  # end
-
   def load_merch
     merchants = data.map do |row|
       Merchant.new(row, self)
