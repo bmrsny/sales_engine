@@ -69,6 +69,12 @@ class CustomerRepository
       end
     end
 
+    def find_all_by_customer_id(id)
+      customers.select do |customer|
+        customer.id == id
+      end
+    end
+
     def random
       customers.sample
     end

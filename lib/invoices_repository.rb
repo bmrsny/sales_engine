@@ -88,4 +88,8 @@ class InvoicesRepository
   def random
     invoices.sample
   end
+
+  def find_customers_from(id)
+    sales_engine.find_customers_from_invoice_id(id)
+  end
 end
