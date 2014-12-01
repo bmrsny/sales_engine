@@ -64,21 +64,25 @@ class MerchantRepositoryTest < Minitest::Test
     def test_can_find_all_by_created_at
       merchant = merchants.find_all_by_created_at("2012-03-27 14:53:59 UTC")
       assert_equal 9, merchant.count
+    end
 
+    def test_can_find_a_random_customer
+      merchant = merchants.random
+      assert_instance_of(Merchant, merchant)
     end
 
     def test_it_has_a_sales_engine
       assert merchants.sales_engine
     end
 
+    def test_the_repository_is_not_empty
+      refute merchants.merchants.empty?
+    end
+
     def test_it_delegates_items_to_the_sales_engine
       sales_engine.expect(:find_items_from_merchant, nil, [1])
       merchants.find_items_from(1)
       sales_engine.verify
-    end
-
-    def test_the_repository_is_not_empty
-      refute merchants.merchants.empty?
     end
   end
 end
