@@ -79,4 +79,14 @@ class SalesEngineTest < Minitest::Test
     assert_equal 3, trans.count
     # assert_instance of Transactions, trans.invoices.first
   end
+
+  def test_can_find_items_from_merchant_id
+    items = sales_engine.items_repository.find_merchants_from(1)
+    assert_equal 15, items.count
+  end
+
+  # def test_can_find_items_from_items_id
+  #   items = sales_engine.items_repository.find_invoice_items_from(1)
+  #   assert_equal 2, items.count
+  # end
 end
