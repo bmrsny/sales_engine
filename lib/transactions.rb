@@ -18,4 +18,9 @@ class Transactions
     @updated_at                   = data[:updated_at]
     @repository                   = parent
   end
+
+  def invoices
+    repository.find_transactions_from(invoice_id)
+  end
+
 end

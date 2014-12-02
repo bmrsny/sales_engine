@@ -17,7 +17,7 @@ class SalesEngine
                 :items_repository, :invoice_items_repository,
                 :transactions_repository, :invoices_repository
 
-  def initialize(dir="./data")
+  def initialize(dir = "./data")
     @dir = dir
     startup
   end
@@ -34,6 +34,10 @@ class SalesEngine
     @transactions_repository ||= TransactionsRepository.new(dir + "/transactions.csv", self)
 
     @invoices_repository ||= InvoicesRepository.new(dir + "/invoices.csv", self)
+  end
+
+  def find_transactions_from_invoice_id(id)
+    invoices_repository.find_all_by_transaction_id(id)
   end
 
   def find_items_from_merchant(id)
