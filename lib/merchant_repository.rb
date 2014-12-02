@@ -77,7 +77,11 @@ class MerchantRepository
     sales_engine.find_items_from_merchant(id)
   end
 
-    def find_invoices_from(id)
+  def find_invoices_from(id)
     sales_engine.find_invoices_from_merchant_id(id)
+  end
+
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
   end
 end

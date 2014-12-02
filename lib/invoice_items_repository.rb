@@ -87,4 +87,8 @@ class InvoiceItemsRepository
   def find_all_by_updated_at(criteria)
     repository.find_all { |object| criteria == object.updated_at }
   end
+
+  def inspect
+    "#<#{self.class} #{@repository.size} rows>"
+  end
 end

@@ -5,12 +5,6 @@ class ItemsRepository
               :sales_engine,
               :data
 
-  # def initialize(file_name, parent)
-  #   @data         = CSVHandler.load_data(file_name)
-  #   @items        = []
-  #   @sales_engine = parent
-  # end
-
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
     @items        = items.class == Array ? items : load_items
@@ -83,5 +77,9 @@ class ItemsRepository
 
   def random
     items.sample
+  end
+
+  def inspect
+    "#<#{self.class} #{@items.size} rows>"
   end
 end
