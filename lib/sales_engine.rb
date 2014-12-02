@@ -29,7 +29,7 @@ class SalesEngine
 
     @invoice_items_repository ||= InvoiceItemsRepository.new(dir + "/invoice_items.csv", self)
 
-    @items_repository ||= ItemsRepository.new(dir + "items.csv", self)
+    @items_repository ||= ItemsRepository.new(dir + "/items.csv", self)
 
     @transactions_repository ||= TransactionsRepository.new(dir + "/transactions.csv", self)
 

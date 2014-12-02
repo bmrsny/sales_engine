@@ -15,6 +15,11 @@ class InvoiceItemsRepositoryTest < Minitest::Test
     assert_equal 2, items.id
   end
 
+  def test_can_find_a_random_invoice_item
+    invoice_items = repository.random
+    assert_instance_of(Invoice_Items, invoice_items)
+  end
+
   def test_can_retrieve_attribute_item_id
     invoice_items = repository.find_by_item_id(539)
     assert_equal 1, invoice_items.id

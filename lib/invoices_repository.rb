@@ -99,7 +99,8 @@ class InvoicesRepository
 
   def inspect
     "#<#{self.class} #{@invoices.size} rows>"
-
+  end
+  
   def find_invoices_from(id)
     sales_engine.invoice_find_invoice_items_by_id(id)
   end
