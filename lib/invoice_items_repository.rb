@@ -1,11 +1,11 @@
 require_relative 'invoice_items'
 require_relative 'csv_handler'
+require 'date'
 
 class InvoiceItemsRepository
-  attr_reader :repository,
-              :sales_engine,
-              :data
-
+  attr_reader   :sales_engine,
+                :data
+  attr_accessor :repository
   def initialize(file_name, parent)
     @data = CSVHandler.load_data(file_name)
     @repository = repository.class == Array ? repository : load_invoice_items
@@ -90,5 +90,36 @@ class InvoiceItemsRepository
 
   def inspect
     "#<#{self.class} #{@repository.size} rows>"
+  end
+
+  def add(new_invoice, items)
+    grouped_items = group_items(items)
+
+    # grouped_items = items.group_by {|item| item.id }
+    grouped_items.map {|item|create_invoice_item(new_invoice, item) }
+  end
+
+  def group_items(items)
+    grouped = Hash.new(0)
+    items.each {|item| grouped[item] += 1 }
+    grouped
+  end
+
+  def create_invoice_item(new_invoice, grouped_item)
+    new_invoice_item = {
+      :id =>         next_id,
+      :item_id =>    grouped_item.first.id,
+      :invoice_id => new_invoice.id,
+      :unit_price => grouped_item.first.unit_price,
+      :quantity =>   grouped_item.last,
+      :created_at => Date.today.to_s,
+      :updated_at => Date.today.to_s
+    }
+    @repository << InvoiceItems.new(new_invoice_item, self)
+    repository.last
+  end
+
+  def next_id
+    repository.max_by { |invoice_item| invoice_item.id  }.id + 1
   end
 end

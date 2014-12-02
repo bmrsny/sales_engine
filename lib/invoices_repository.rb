@@ -1,9 +1,11 @@
 require_relative 'invoices'
 require_relative 'csv_handler'
+require 'date'
 class InvoicesRepository
-  attr_reader :invoices,
-              :sales_engine,
+  attr_reader :sales_engine,
               :data
+
+  attr_accessor :invoices
 
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
@@ -100,12 +102,37 @@ class InvoicesRepository
   def inspect
     "#<#{self.class} #{@invoices.size} rows>"
   end
-  
+
   def find_invoices_from(id)
     sales_engine.invoice_find_invoice_items_by_id(id)
   end
 
   def find_items_from(invoice_id)
     sales_engine.invoice_find_items_by_id(invoice_id)
+  end
+
+  def create(options = {})
+    customer = options[:customer]
+    merchant = options[:merchant]
+    status   = options[:status]
+    items    = options[:items]
+    sales_engine.create_invoice(customer,merchant,status,items)
+  end
+
+  def add(customer, merchant, status)
+    new_invoice = {
+      :id =>           next_id,
+      :customer_id =>  customer.id,
+      :merchant_id =>  merchant.id,
+      :status =>       status,
+      :created_at =>  Date.today.to_s,
+      :updated_at =>  Date.today.to_s
+    }
+    invoices << Invoices.new(new_invoice, self)
+    invoices.last
+  end
+
+  def next_id
+    invoices.max_by { |invoice| invoice.id  }.id + 1
   end
 end

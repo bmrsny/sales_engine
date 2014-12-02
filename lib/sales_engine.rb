@@ -68,4 +68,11 @@ class SalesEngine
     invoice_items = invoice_find_invoice_items_by_id(invoice_id)
     invoice_items.map {|invoice_item| invoice_items_find_items_by_id(invoice_item.item_id)}
   end
+
+  def create_invoice(customer, merchant, status, items)
+    new_invoice = invoices_repository.add(customer, merchant, status)
+    invoice_items_repository.add(new_invoice, items)
+    new_invoice
+  end
+
 end
