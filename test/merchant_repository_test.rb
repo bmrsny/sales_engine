@@ -53,7 +53,6 @@ class MerchantRepositoryTest < Minitest::Test
     def test_can_find_all_by_updated_at
       merchant = merchants.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
       assert_equal 8, merchant.count
-
     end
 
     def test_can_find_by_created_at
