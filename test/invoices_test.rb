@@ -37,4 +37,16 @@ class InvoicesTest < Minitest::Test
     invoice.merchant
     parent.verify
   end
+
+  def test_can_find_invoice_items_by_id
+    parent.expect(:find_invoice_items_from, nil, [10])
+    invoice.invoice_items
+    parent.verify
+  end
+
+  def test_can_find_items_by_id
+    parent.expect(:find_items_from, nil, [10])
+    invoice.items
+    parent.verify
+  end
 end
