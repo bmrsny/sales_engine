@@ -90,6 +90,10 @@ class InvoicesRepository
   end
 
   def find_customers_from(id)
-    sales_engine.find_customers_from_invoice_id(id)
+    sales_engine.invoice_find_customer_by_id(id)
+  end
+
+  def find_merchants_from(id)
+    sales_engine.invoice_find_merchant_by_id(id)
   end
 end

@@ -91,5 +91,4 @@ class TransactionsRepository
       transaction.result == x
     end
   end
-
 end

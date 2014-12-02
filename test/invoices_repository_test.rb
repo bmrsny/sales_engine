@@ -91,8 +91,14 @@ class InvoicesRepositoryTest < Minitest::Test
   end
 
   def test_delegates_customers_to_sales_engine
-    sales_engine.expect(:find_customers_from_invoice_id, nil, [1])
+    sales_engine.expect(:invoice_find_customer_by_id, nil, [1])
     repository.find_customers_from(1)
+    sales_engine.verify
+  end
+
+  def test_delegates_merchants_to_sales_engine
+    sales_engine.expect(:invoice_find_merchant_by_id, nil, [1])
+    repository.find_merchants_from(1)
     sales_engine.verify
   end
 end

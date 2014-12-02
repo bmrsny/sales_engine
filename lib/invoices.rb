@@ -17,7 +17,11 @@ class Invoices
     @repository  = parent
   end
 
-  def customers
-    repository.find_customers_from(id)
+  def customer
+    repository.find_customers_from(customer_id)
+  end
+
+  def merchant
+    repository.find_merchants_from(merchant_id)
   end
 end
