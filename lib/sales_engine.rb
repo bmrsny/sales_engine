@@ -4,7 +4,7 @@ require_relative 'merchant_repository'
 require_relative 'customer'
 require_relative 'customer_repository'
 require_relative 'invoice_items'
-require_relative 'invoice_items_repository'
+require_relative 'invoice_item_repository'
 require_relative 'invoices'
 require_relative 'invoices_repository'
 require_relative 'items'
@@ -14,7 +14,7 @@ require_relative 'transactions_repository'
 
 class SalesEngine
   attr_reader :dir, :merchant_repository, :customer_repository,
-                :items_repository, :invoice_items_repository,
+                :items_repository, :invoice_item_repository,
                 :transactions_repository, :invoices_repository
 
   def initialize(dir = "./data")
@@ -27,7 +27,7 @@ class SalesEngine
 
     @customer_repository ||= CustomerRepository.new(dir + "/customers.csv", self)
 
-    @invoice_items_repository ||= InvoiceItemsRepository.new(dir + "/invoice_items.csv", self)
+    @invoice_item_repository ||= InvoiceItemRepository.new(dir + "/invoice_items.csv", self)
 
     @items_repository ||= ItemsRepository.new(dir + "/items.csv", self)
 
@@ -61,7 +61,7 @@ class SalesEngine
   end
 
   def invoice_find_invoice_items_by_id(invoice_id)
-    invoice_items_repository.find_all_by_invoice_id(invoice_id)
+    invoice_item_repository.find_all_by_invoice_id(invoice_id)
   end
 
   def invoice_items_find_items_by_id(item_id)
@@ -79,7 +79,7 @@ class SalesEngine
 
   def create_invoice(customer, merchant, status, items)
     new_invoice = invoices_repository.add(customer, merchant, status)
-    invoice_items_repository.add(new_invoice, items)
+    invoice_item_repository.add(new_invoice, items)
     new_invoice
   end
 

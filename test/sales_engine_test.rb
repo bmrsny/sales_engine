@@ -27,8 +27,8 @@ class SalesEngineTest < Minitest::Test
     sales_engine.items_repository
   end
 
-  def test_there_is_a_invoice_items_repository_on_startup
-    sales_engine.invoice_items_repository
+  def test_there_is_a_invoice_item_repository_on_startup
+    sales_engine.invoice_item_repository
   end
 
   def test_there_is_a_transactions_repository_on_startup
@@ -65,7 +65,7 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_can_find_invoice_items_from_invoices_id
-    invoice = sales_engine.invoice_items_repository.find_by_id(10)
+    invoice = sales_engine.invoice_item_repository.find_by_id(10)
     assert_equal 10, invoice.id
   end
 
@@ -118,6 +118,6 @@ class SalesEngineTest < Minitest::Test
 
   def test_can_find_transactions_from_customer_id
     customer = sales_engine.customer_repository.find_by_id(1)
-    assert_equal 1, customer.transaction.count
+    assert_equal 1, customer.transactions.count
   end
 end
