@@ -7,15 +7,15 @@ require_relative 'invoice_item'
 require_relative 'invoice_item_repository'
 require_relative 'invoice'
 require_relative 'invoice_repository'
-require_relative 'items'
-require_relative 'items_repository'
-require_relative 'transactions'
-require_relative 'transactions_repository'
+require_relative 'item'
+require_relative 'item_repository'
+require_relative 'transaction'
+require_relative 'transaction_repository'
 
 class SalesEngine
   attr_reader :dir, :merchant_repository, :customer_repository,
-                :items_repository, :invoice_item_repository,
-                :transactions_repository, :invoice_repository
+                :item_repository, :invoice_item_repository,
+                :transaction_repository, :invoice_repository
 
   def initialize(dir = "./data")
     @dir = dir
@@ -29,9 +29,9 @@ class SalesEngine
 
     @invoice_item_repository ||= InvoiceItemRepository.new(dir + "/invoice_items.csv", self)
 
-    @items_repository ||= ItemsRepository.new(dir + "/items.csv", self)
+    @item_repository ||= ItemRepository.new(dir + "/items.csv", self)
 
-    @transactions_repository ||= TransactionsRepository.new(dir + "/transactions.csv", self)
+    @transaction_repository ||= TransactionRepository.new(dir + "/transactions.csv", self)
 
     @invoice_repository = InvoiceRepository.new(dir + "/invoices.csv", self)
   end
@@ -65,7 +65,7 @@ class SalesEngine
   end
 
   def invoice_items_find_items_by_id(item_id)
-    items_repository.find_by_id(item_id)
+    item_repository.find_by_id(item_id)
   end
 
   def invoice_find_items_by_id(invoice_id)
@@ -73,8 +73,8 @@ class SalesEngine
     invoice_items.map {|invoice_item| invoice_items_find_items_by_id(invoice_item.item_id)}
   end
 
-  def invoice_find_transactions_by_id(id)
-    transactions_repository.find_all_by_id(id)
+  def invoices_find_transactions_by_id(id)
+    transaction_repository.find_all_by_id(id)
   end
 
   def create_invoice(customer, merchant, status, items)
@@ -84,7 +84,7 @@ class SalesEngine
   end
 
   def create_transaction(credit_card_number, credit_card_expiration, result, id)
-    transactions_repository.add(credit_card_number, credit_card_expiration, result, id)
+    transaction_repository.add(credit_card_number, credit_card_expiration, result, id)
   end
 
   def find_customer_transactions(id)
