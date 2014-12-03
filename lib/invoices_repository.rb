@@ -135,4 +135,8 @@ class InvoicesRepository
   def next_id
     invoices.max_by { |invoice| invoice.id  }.id + 1
   end
+
+  def create_transaction(credit_card_number, credit_card_expiration, result, id)
+    sales_engine.create_transaction(credit_card_number, credit_card_expiration, result, id)
+  end
 end

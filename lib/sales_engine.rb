@@ -75,4 +75,7 @@ class SalesEngine
     new_invoice
   end
 
+  def create_transaction(credit_card_number, credit_card_expiration, result, id)
+    transactions_repository.add(credit_card_number, credit_card_expiration, result, id)
+  end
 end

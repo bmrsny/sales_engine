@@ -85,4 +85,16 @@ class SalesEngineTest < Minitest::Test
     assert_equal (starting_length + 1), sales_engine.invoices_repository.invoices.count
     assert_instance_of Invoices, invoice
   end
+
+  def test_can_create_a_transaction
+    credit_card_number     = '4444333322221111'
+    credit_card_expiration = "10/13"
+    result                 = "success"
+    starting_length = sales_engine.transactions_repository.transactions.count
+    invoice = sales_engine.invoices_repository.find_by_id(18)
+    charged = invoice.charge(credit_card_number: credit_card_number,
+    credit_card_expiration: credit_card_expiration, result: result)
+    assert_equal (starting_length + 1), sales_engine.transactions_repository.transactions.count
+    assert_instance_of Transactions, charged
+  end
 end

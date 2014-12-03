@@ -32,4 +32,11 @@ class Invoices
   def items
     repository.find_items_from(id)
   end
+
+  def charge(options = {})
+    credit_card_number = options[:credit_card_number]
+    credit_card_expiration = options[:credit_card_expiration]
+    result = options[:result]
+    repository.create_transaction(credit_card_number, credit_card_expiration, result,id)
+  end
 end
