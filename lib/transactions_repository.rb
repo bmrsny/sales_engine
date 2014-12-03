@@ -1,9 +1,9 @@
 require_relative 'transactions'
 require_relative 'csv_handler'
 class TransactionsRepository
-  attr_reader :transactions,
-              :sales_engine,
+  attr_reader :sales_engine,
               :data
+  attr_accessor :transactions
 
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
@@ -107,5 +107,23 @@ class TransactionsRepository
 
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"
+  end
+
+  def add(credit_card_number, credit_card_expiration, result, invoice_id)
+    new_transaction = {
+      :id                          => next_id,
+      :invoice_id                  => invoice_id,
+      :credit_card_number          => credit_card_number,
+      :credit_card_expiration_date => credit_card_expiration,
+      :result                      => result,
+      :created_at                  => Date.today.to_s,
+      :updated_at                  => Date.today.to_s
+    }
+    transactions << Transactions.new(new_transaction, self)
+    transactions.last
+  end
+
+  def next_id
+    transactions.max_by { |transaction| transaction.id  }.id + 1
   end
 end
