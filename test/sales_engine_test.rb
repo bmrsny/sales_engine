@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 require_relative '../lib/sales_engine'
 require_relative '../lib/item'
-require_relative '../lib/invoices'
+require_relative '../lib/invoice'
 
 class SalesEngineTest < Minitest::Test
   attr_reader :sales_engine
@@ -72,7 +72,7 @@ class SalesEngineTest < Minitest::Test
   def test_can_find_an_item_from_invoice_id
     invoice = sales_engine.invoice_repository.find_by_id(3)
     assert_equal 8, invoice.items.count
-    assert_instance_of Items, invoice.items.first
+    assert_instance_of Item, invoice.items.first
   end
 
 
@@ -80,7 +80,7 @@ class SalesEngineTest < Minitest::Test
     customer = sales_engine.customer_repository.find_by_id(3)
     merchant = sales_engine.merchant_repository.find_by_id(1)
     status   = ""
-    items    = (1..3).map {sales_engine.items_repository.random }
+    items    = (1..3).map {sales_engine.item_repository.random }
     starting_length = sales_engine.invoice_repository.invoices.count
     invoice  = sales_engine.invoice_repository.create(customer: customer, merchant: merchant, status: status, items: items)
     assert_equal (starting_length + 1), sales_engine.invoice_repository.invoices.count
@@ -91,7 +91,7 @@ class SalesEngineTest < Minitest::Test
     credit_card_number     = '4444333322221111'
     credit_card_expiration = "10/13"
     result                 = "success"
-    starting_length = sales_engine.transactions_repository.transactions.count
+    starting_length = sales_engine.transaction_repository.repository.count
     invoice = sales_engine.invoice_repository.find_by_id(18)
     charged = invoice.charge(credit_card_number: credit_card_number,
     credit_card_expiration: credit_card_expiration, result: result)
@@ -118,6 +118,6 @@ class SalesEngineTest < Minitest::Test
 
   def test_can_find_transactions_from_customer_id
     customer = sales_engine.customer_repository.find_by_id(1)
-    assert_equal 1, customer.transactions.count
+    assert_equal 1, customer.transaction.count
   end
 end

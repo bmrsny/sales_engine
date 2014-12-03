@@ -35,7 +35,7 @@ class CustomerTest < Minitest::Test
 
   def test_delegates_transactions_to_repository
     parent.expect(:find_transactions, nil, [1])
-    customer.transactions
+    customer.transaction
     parent.verify
   end
 end

@@ -73,7 +73,7 @@ class SalesEngine
     invoice_items.map {|invoice_item| invoice_items_find_items_by_id(invoice_item.item_id)}
   end
 
-  def invoices_find_transactions_by_id(id)
+  def invoice_find_transactions_by_id(id)
     transaction_repository.find_all_by_id(id)
   end
 
