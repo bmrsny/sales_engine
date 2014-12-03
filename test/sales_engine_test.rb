@@ -107,8 +107,8 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_can_find_items_from_merchant_id
-    merchant = sales_engine.merchant_repository.find_by_id(24)
-    assert_equal 1, merchant.items.count
+    merchant = sales_engine.merchant_repository.find_all_by_id(24)
+    assert_equal 1, merchant.count
   end
 
   # def test_can_find_items_from_items_id

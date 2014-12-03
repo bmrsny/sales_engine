@@ -103,7 +103,7 @@ class InvoiceRepository
     "#<#{self.class} #{@invoices.size} rows>"
   end
 
-  def find_invoice_from(id)
+  def find_invoice_items_from(id)
     sales_engine.invoice_find_invoice_items_by_id(id)
   end
 
