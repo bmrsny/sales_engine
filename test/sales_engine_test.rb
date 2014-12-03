@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 require_relative '../lib/sales_engine'
 require_relative '../lib/items'
-require_relative '../lib/invoices'
+require_relative '../lib/invoice'
 
 class SalesEngineTest < Minitest::Test
   attr_reader :sales_engine
@@ -35,8 +35,8 @@ class SalesEngineTest < Minitest::Test
     sales_engine.transactions_repository
   end
 
-  def test_there_is_a_invoices_repository_on_startup
-    sales_engine.invoices_repository
+  def test_there_is_a_invoice_repository_on_startup
+    sales_engine.invoice_repository
   end
 
   def test_can_find_items_from_merchant_id
@@ -44,33 +44,33 @@ class SalesEngineTest < Minitest::Test
     assert_equal 15, merchant.count
   end
 
-  def test_can_find_invoices_from_merchant_id
-    merchant = sales_engine.merchant_repository.find_invoices_from(26)
+  def test_can_find_invoice_from_merchant_id
+    merchant = sales_engine.merchant_repository.find_invoice_from(26)
     assert_equal 1, merchant.count
   end
 
   def test_can_find_customers_from_invoice_id
-    invoice = sales_engine.invoices_repository.find_by_id(10)
+    invoice = sales_engine.invoice_repository.find_by_id(10)
     assert_equal 10, invoice.id
   end
 
-  def test_can_find_invoices_from_customer_id
-    customer = sales_engine.customer_repository.find_invoices_from(7)
+  def test_can_find_invoice_from_customer_id
+    customer = sales_engine.customer_repository.find_invoice_from(7)
     assert_equal 3, customer.count
   end
 
   def test_can_find_merchants_from_invoice_id
-    invoice = sales_engine.invoices_repository.find_merchants_from(10)
+    invoice = sales_engine.invoice_repository.find_merchants_from(10)
     assert_equal 1, invoice.count
   end
 
-  def test_can_find_invoice_items_from_invoices_id
+  def test_can_find_invoice_items_from_invoice_id
     invoice = sales_engine.invoice_item_repository.find_by_id(10)
     assert_equal 10, invoice.id
   end
 
   def test_can_find_an_item_from_invoice_id
-    invoice = sales_engine.invoices_repository.find_by_id(3)
+    invoice = sales_engine.invoice_repository.find_by_id(3)
     assert_equal 8, invoice.items.count
     assert_instance_of Items, invoice.items.first
   end
@@ -81,10 +81,10 @@ class SalesEngineTest < Minitest::Test
     merchant = sales_engine.merchant_repository.find_by_id(1)
     status   = ""
     items    = (1..3).map {sales_engine.items_repository.random }
-    starting_length = sales_engine.invoices_repository.invoices.count
-    invoice  = sales_engine.invoices_repository.create(customer: customer, merchant: merchant, status: status, items: items)
-    assert_equal (starting_length + 1), sales_engine.invoices_repository.invoices.count
-    assert_instance_of Invoices, invoice
+    starting_length = sales_engine.invoice_repository.invoices.count
+    invoice  = sales_engine.invoice_repository.create(customer: customer, merchant: merchant, status: status, items: items)
+    assert_equal (starting_length + 1), sales_engine.invoice_repository.invoices.count
+    assert_instance_of Invoice, invoice
   end
 
   def test_can_create_a_transaction
@@ -92,7 +92,7 @@ class SalesEngineTest < Minitest::Test
     credit_card_expiration = "10/13"
     result                 = "success"
     starting_length = sales_engine.transactions_repository.transactions.count
-    invoice = sales_engine.invoices_repository.find_by_id(18)
+    invoice = sales_engine.invoice_repository.find_by_id(18)
     charged = invoice.charge(credit_card_number: credit_card_number,
     credit_card_expiration: credit_card_expiration, result: result)
     assert_equal (starting_length + 1), sales_engine.transactions_repository.transactions.count
@@ -102,7 +102,7 @@ class SalesEngineTest < Minitest::Test
   def test_can_find_transactions_from_invoice_id
     trans = sales_engine.transactions_repository.find_all_by_invoice_id(12)
     assert_equal 3, trans.count
-    # assert_instance_of Transactions, trans.invoices.first
+    # assert_instance_of Transactions, trans.invoice.first
     #this test is from invoice to transactions repo not for transactions!!!
   end
 

@@ -88,7 +88,7 @@ class TransactionsRepositoryTest < Minitest::Test
 
     def test_it_delegates_items_to_the_sales_engine
       sales_engine.expect(:transaction_find_invoice_by_id, nil, [9])
-      transactions.find_invoices_from(9)
+      transactions.find_invoice_from(9)
       sales_engine.verify
     end
   end

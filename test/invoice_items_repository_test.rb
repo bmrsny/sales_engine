@@ -17,7 +17,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
 
   def test_can_find_a_random_invoice_item
     invoice_items = repository.random
-    assert_instance_of(InvoiceItems, invoice_items)
+    assert_instance_of(InvoiceItem, invoice_items)
   end
 
   def test_can_retrieve_attribute_item_id

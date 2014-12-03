@@ -1,7 +1,7 @@
-require_relative 'invoices'
+require_relative 'invoice'
 require_relative 'csv_handler'
 require 'date'
-class InvoicesRepository
+class InvoiceRepository
   attr_reader :sales_engine,
               :data
 
@@ -9,13 +9,13 @@ class InvoicesRepository
 
   def initialize(file_name, parent)
     @data         = CSVHandler.load_data(file_name)
-    @invoices     = invoices.class == Array ? invoices : load_invoices
+    @invoices     = Invoice.class == Array ? invoices : load_invoices
     @sales_engine = parent
   end
 
   def load_invoices
     invoices = data.map do |row|
-      Invoices.new(row, self)
+      Invoice.new(row, self)
     end
   end
 
@@ -103,7 +103,7 @@ class InvoicesRepository
     "#<#{self.class} #{@invoices.size} rows>"
   end
 
-  def find_invoices_from(id)
+  def find_invoice_from(id)
     sales_engine.invoice_find_invoice_items_by_id(id)
   end
 
@@ -112,7 +112,7 @@ class InvoicesRepository
   end
 
   def find_transactions_from(id)
-    sales_engine.invoices_find_transactions_by_id(id)
+    sales_engine.invoice_find_transactions_by_id(id)
   end
 
   def create(options = {})
@@ -133,7 +133,7 @@ class InvoicesRepository
       :updated_at =>  Date.today.to_s
     }
 
-    invoices << Invoices.new(new_invoice, self)
+    invoices << Invoice.new(new_invoice, self)
     invoices.last
   end
 

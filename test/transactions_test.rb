@@ -34,7 +34,7 @@ class TransactionTest < Minitest::Test
 
   def test_it_delegates_items_to_its_repository
     parent.expect(:find_transactions_from, nil, [10])
-    transaction.invoices
+    transaction.invoice
     parent.verify
   end
 end

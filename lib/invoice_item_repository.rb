@@ -1,4 +1,4 @@
-require_relative 'invoice_items'
+require_relative 'invoice_item'
 require_relative 'csv_handler'
 require 'date'
 
@@ -15,7 +15,7 @@ class InvoiceItemRepository
 
   def load_invoice_items
     repository = data.map do |row|
-      InvoiceItems.new(row, self)
+      InvoiceItem.new(row, self)
     end
   end
 
@@ -123,7 +123,7 @@ class InvoiceItemRepository
       :created_at => Date.today.to_s,
       :updated_at => Date.today.to_s
     }
-    @repository << InvoiceItems.new(new_invoice_item, self)
+    @repository << InvoiceItem.new(new_invoice_item, self)
     repository.last
   end
 
