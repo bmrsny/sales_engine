@@ -1,13 +1,13 @@
 require_relative 'test_helper'
-require_relative '../lib/invoice_items_repository'
+require_relative '../lib/invoice_item_repository'
 
-class InvoiceItemsRepositoryTest < Minitest::Test
+class InvoiceItemRepositoryTest < Minitest::Test
   attr_reader :repository,
               :sales_engine
 
   def setup
     @sales_engine = Minitest::Mock.new
-    @repository = InvoiceItemsRepository.new('./data/fixtures/invoice_items.csv', sales_engine)
+    @repository = InvoiceItemRepository.new('./data/fixtures/invoice_items.csv', sales_engine)
   end
 
   def test_can_retrieve_attribute_id

@@ -2,7 +2,7 @@ require_relative 'invoice_items'
 require_relative 'csv_handler'
 require 'date'
 
-class InvoiceItemsRepository
+class InvoiceItemRepository
   attr_reader   :sales_engine,
                 :data
   attr_accessor :repository
