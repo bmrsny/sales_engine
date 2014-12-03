@@ -16,14 +16,27 @@ class TransactionsRepository
       Transactions.new(row, self)
     end
   end
+
   def find_by_id(x)
     transactions.find do |transaction|
       transaction.id == x
     end
   end
 
+  def find_all_by_id(id)
+    transactions.select do |transaction|
+      transaction.id == id
+    end
+  end
+
   def find_by_invoice_id(x)
     transactions.find do |transaction|
+      transaction.invoice_id == x
+    end
+  end
+
+  def find_all_by_invoice_id(x)
+    transactions.select do |transaction|
       transaction.invoice_id == x
     end
   end
@@ -34,9 +47,21 @@ class TransactionsRepository
     end
   end
 
+  def find_all_by_credit_card_number(x)
+    transactions.select do |transaction|
+      transaction.credit_card_number == x
+    end
+  end
+
   # def find_by_credit_card_expiration_date(x)
-  #   transactions.select do |transaction|
+  #   transactions.find do |transaction|
   #     transaction.credit_card_expiration_date == x
+  #   end
+  # end
+
+  # def find_all_by_credit_card_expiration_date(x)
+  #   transactions.select do |transaction|
+  #     transaction.all_by_credit_card_expiration_date == x
   #   end
   # end
 
@@ -46,50 +71,38 @@ class TransactionsRepository
     end
   end
 
-  def find_by_created_at(created_at)
-    transactions.find {|transaction| transaction.created_at == created_at}
+  def find_all_by_result(x)
+    transactions.select do |transaction|
+      transaction.result == x
+    end
   end
 
-  def find_by_updated_at(updated_at)
-    transactions.find {|transaction| transaction.updated_at == updated_at}
+  def find_by_created_at(created_at)
+    transactions.find {|transaction| transaction.created_at == created_at}
   end
 
   def find_all_by_created_at(created_at)
     transactions.select {|transaction| transaction.created_at == created_at}
   end
 
+  def find_by_updated_at(updated_at)
+    transactions.find {|transaction| transaction.updated_at == updated_at}
+  end
+
   def find_all_by_updated_at(updated_at)
     transactions.select {|transaction| transaction.updated_at == updated_at}
   end
 
-  def find_all_by_id(x)
-    transactions.select do |transaction|
-      transaction.id == x
-    end
+  def random
+    transactions.sample
   end
 
-  def find_all_by_invoice_id(x)
-    transactions.select do |transaction|
-      transaction.invoice_id == x
-    end
+  def all
+    transactions
   end
 
-  def find_all_by_credit_card_number(x)
-    transactions.select do |transaction|
-      transaction.credit_card_number == x
-    end
-  end
-  #
-  # def find_all_by_credit_card_expiration_date(x)
-  #   transactions.select do |transaction|
-  #     transaction.all_by_credit_card_expiration_date == x
-  #   end
-  # end
-  #
-  def find_all_by_result(x)
-    transactions.select do |transaction|
-      transaction.result == x
-    end
+  def find_invoices_from(id)
+    sales_engine.find_transactions_from_invoice_id(id)
   end
 
   def inspect

@@ -75,6 +75,7 @@ class SalesEngineTest < Minitest::Test
     assert_instance_of Items, invoice.items.first
   end
 
+
   def test_can_create_new_invoice_object
     customer = sales_engine.customer_repository.find_by_id(3)
     merchant = sales_engine.merchant_repository.find_by_id(1)
@@ -97,4 +98,20 @@ class SalesEngineTest < Minitest::Test
     assert_equal (starting_length + 1), sales_engine.transactions_repository.transactions.count
     assert_instance_of Transactions, charged
   end
+
+  def test_can_find_transactions_from_invoice_id
+    trans = sales_engine.transactions_repository.find_all_by_invoice_id(12)
+    assert_equal 3, trans.count
+    # assert_instance of Transactions, trans.invoices.first
+  end
+
+  def test_can_find_items_from_merchant_id
+    items = sales_engine.items_repository.find_merchants_from(1)
+    assert_equal 15, items.count
+  end
+
+  # def test_can_find_items_from_items_id
+  #   items = sales_engine.items_repository.find_invoice_items_from(1)
+  #   assert_equal 2, items.count
+  # end
 end

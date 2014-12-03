@@ -17,7 +17,7 @@ class SalesEngine
                 :items_repository, :invoice_items_repository,
                 :transactions_repository, :invoices_repository
 
-  def initialize(dir="./data")
+  def initialize(dir = "./data")
     @dir = dir
     startup
   end
@@ -34,6 +34,10 @@ class SalesEngine
     @transactions_repository ||= TransactionsRepository.new(dir + "/transactions.csv", self)
 
     @invoices_repository ||= InvoicesRepository.new(dir + "/invoices.csv", self)
+  end
+
+  def find_transactions_from_invoice_id(id)
+    invoices_repository.find_all_by_transaction_id(id)
   end
 
   def find_items_from_merchant(id)
@@ -78,4 +82,12 @@ class SalesEngine
   def create_transaction(credit_card_number, credit_card_expiration, result, id)
     transactions_repository.add(credit_card_number, credit_card_expiration, result, id)
   end
+
+  # def items_find_merchant_by_merchant_id(merchant_id)
+  #   items_repository.find_merchants_from(merchant_id)
+  # end
+  #
+  # def items_find_invoice_items_from_items_id(id)
+  #   items_repository.find_invoice_items_from(id)
+  # end
 end

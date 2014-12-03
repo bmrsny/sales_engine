@@ -13,9 +13,17 @@ class InvoiceItems
     @item_id     = data[:item_id].to_i
     @invoice_id  = data[:invoice_id].to_i
     @quantity    = data[:quantity].to_i
-    @unit_price  = data[:unit_price].to_i
+    @unit_price  = data[:unit_price]
     @created_at  = data[:created_at]
     @updated_at  = data[:updated_at]
     @repository  = parent
+  end
+
+  def invoice
+    repository.find_invoice_items_from_invoice(invoice_id)
+  end
+
+  def item
+    repository.find_invoice_items_from_item(item_id)
   end
 end
