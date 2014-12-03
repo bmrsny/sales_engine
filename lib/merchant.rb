@@ -14,7 +14,7 @@ class Merchant
     repository.find_items_from(id)
   end
 
-  def invoices
-    repository.find_invoices_from(id)
+  def invoice
+    repository.find_invoice_from(id)
   end
 end

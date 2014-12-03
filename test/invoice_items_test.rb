@@ -1,7 +1,7 @@
 require_relative 'test_helper'
-require_relative '../lib/invoice_items'
+require_relative '../lib/invoice_item'
 
-class InvoiceItemsTest < Minitest::Test
+class InvoiceItemTest < Minitest::Test
   attr_reader :invoice_item,
               :parent
 
@@ -16,7 +16,7 @@ class InvoiceItemsTest < Minitest::Test
       updated_at: '2012-03-27 14:54:10 UTC'
     }
     @parent = Minitest::Mock.new
-    @invoice_item = InvoiceItems.new(data, parent)
+    @invoice_item = InvoiceItem.new(data, parent)
   end
 
   def test_invoice_items_has_attributes
