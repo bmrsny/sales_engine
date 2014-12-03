@@ -83,5 +83,11 @@ class MerchantRepositoryTest < Minitest::Test
       merchants.find_items_from(1)
       sales_engine.verify
     end
+
+    def test_it_delegates_invoice_to_the_sales_engine
+      sales_engine.expect(:find_invoice_from_merchant, nil, [1])
+      merchants.find_invoice_from(1)
+      sales_engine.verify
+    end
   end
 end

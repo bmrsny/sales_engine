@@ -78,7 +78,7 @@ class MerchantRepository
   end
 
   def find_invoice_from(id)
-    sales_engine.find_invoice_from_merchant_id(id)
+    sales_engine.find_invoice_from_merchant(id)
   end
 
   def inspect
