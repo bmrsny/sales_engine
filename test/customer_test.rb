@@ -27,9 +27,9 @@ class CustomerTest < Minitest::Test
     assert_equal '2012-03-27 14:54:09 UTC', customer.updated_at
   end
 
-  def test_it_delegates_invoices_to_its_repository
-    parent.expect(:find_invoices_from, nil, [1])
-    customer.invoices
+  def test_it_delegates_invoice_to_its_repository
+    parent.expect(:find_invoice_from, nil, [1])
+    customer.invoice
     parent.verify
   end
 
