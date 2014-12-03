@@ -90,4 +90,8 @@ class CustomerRepository
     def inspect
       "#<#{self.class} #{@customers.size} rows>"
     end
+
+    def find_transactions(id)
+      sales_engine.find_customer_transactions(id)
+    end
 end

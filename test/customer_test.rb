@@ -32,4 +32,10 @@ class CustomerTest < Minitest::Test
     customer.invoices
     parent.verify
   end
+
+  def test_delegates_transactions_to_repository
+    parent.expect(:find_transactions, nil, [1])
+    customer.transaction
+    parent.verify
+  end
 end

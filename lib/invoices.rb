@@ -33,6 +33,10 @@ class Invoices
     repository.find_items_from(id)
   end
 
+  def transactions
+    repository.find_transactions_from(id)
+  end
+
   def charge(options = {})
     credit_card_number = options[:credit_card_number]
     credit_card_expiration = options[:credit_card_expiration]

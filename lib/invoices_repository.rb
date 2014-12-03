@@ -111,6 +111,10 @@ class InvoicesRepository
     sales_engine.invoice_find_items_by_id(invoice_id)
   end
 
+  def find_transactions_from(id)
+    sales_engine.invoices_find_transactions_by_id(id)
+  end
+
   def create(options = {})
     customer = options[:customer]
     merchant = options[:merchant]
@@ -128,6 +132,7 @@ class InvoicesRepository
       :created_at =>  Date.today.to_s,
       :updated_at =>  Date.today.to_s
     }
+
     invoices << Invoices.new(new_invoice, self)
     invoices.last
   end

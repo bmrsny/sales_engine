@@ -49,4 +49,10 @@ class InvoicesTest < Minitest::Test
     invoice.items
     parent.verify
   end
+
+  def test_can_find_transactions_by_id
+    parent.expect(:find_transactions_from, nil, [10])
+    invoice.transactions
+    parent.verify
+  end
 end

@@ -66,4 +66,10 @@ class CustomerRepositoryTest < Minitest::Test
     repository.find_invoices_from(1)
     sales_engine.verify
   end
+
+  def test_delegates_transactions_to_the_sales_engine
+    sales_engine.expect(:find_customer_transactions, nil, [1])
+    repository.find_transactions(1)
+    sales_engine.verify
+  end
 end

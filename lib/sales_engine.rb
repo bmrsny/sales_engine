@@ -33,7 +33,7 @@ class SalesEngine
 
     @transactions_repository ||= TransactionsRepository.new(dir + "/transactions.csv", self)
 
-    @invoices_repository ||= InvoicesRepository.new(dir + "/invoices.csv", self)
+    @invoices_repository = InvoicesRepository.new(dir + "/invoices.csv", self)
   end
 
   def find_transactions_from_invoice_id(id)
@@ -41,7 +41,7 @@ class SalesEngine
   end
 
   def find_items_from_merchant(id)
-    items_repository.find_all_by_merchant_id(id)
+    merchant_repository.find_all_by_id(id)
   end
 
   def find_invoices_from_merchant_id(id)
@@ -73,6 +73,10 @@ class SalesEngine
     invoice_items.map {|invoice_item| invoice_items_find_items_by_id(invoice_item.item_id)}
   end
 
+  def invoices_find_transactions_by_id(id)
+    transactions_repository.find_all_by_id(id)
+  end
+
   def create_invoice(customer, merchant, status, items)
     new_invoice = invoices_repository.add(customer, merchant, status)
     invoice_items_repository.add(new_invoice, items)
@@ -81,6 +85,10 @@ class SalesEngine
 
   def create_transaction(credit_card_number, credit_card_expiration, result, id)
     transactions_repository.add(credit_card_number, credit_card_expiration, result, id)
+  end
+
+  def find_customer_transactions(id)
+    invoices_repository.find_transactions_from(id)
   end
 
   # def items_find_merchant_by_merchant_id(merchant_id)
