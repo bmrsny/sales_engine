@@ -13,11 +13,11 @@ class Customer
     @repository = parent
   end
 
-  def invoice
+  def invoices
     repository.find_invoice_from(id)
   end
 
-  def transaction
+  def transactions
     repository.find_transactions(id)
   end
 end

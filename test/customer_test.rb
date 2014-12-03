@@ -29,13 +29,13 @@ class CustomerTest < Minitest::Test
 
   def test_it_delegates_invoice_to_its_repository
     parent.expect(:find_invoice_from, nil, [1])
-    customer.invoice
+    customer.invoices
     parent.verify
   end
 
   def test_delegates_transactions_to_repository
     parent.expect(:find_transactions, nil, [1])
-    customer.transaction
+    customer.transactions
     parent.verify
   end
 end

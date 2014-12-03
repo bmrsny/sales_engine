@@ -118,6 +118,6 @@ class SalesEngineTest < Minitest::Test
 
   def test_can_find_transactions_from_customer_id
     customer = sales_engine.customer_repository.find_by_id(1)
-    assert_equal 1, customer.transaction.count
+    assert_equal 1, customer.transactions.count
   end
 end

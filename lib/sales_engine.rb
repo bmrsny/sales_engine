@@ -91,11 +91,11 @@ class SalesEngine
     invoice_repository.find_transactions_from(id)
   end
 
-  # def items_find_merchant_by_merchant_id(merchant_id)
-  #   items_repository.find_merchants_from(merchant_id)
-  # end
-  #
-  # def items_find_invoice_items_from_items_id(id)
-  #   items_repository.find_invoice_items_from(id)
-  # end
+  def items_find_merchant_by_merchant_id(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
+  end
+
+  def items_find_invoice_items_from_items_id(id)
+    invoice_item_repository.find_all_by_item_id(id)
+  end
 end
