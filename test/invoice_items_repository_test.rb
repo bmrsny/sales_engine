@@ -17,7 +17,7 @@ class InvoiceItemsRepositoryTest < Minitest::Test
 
   def test_can_find_a_random_invoice_item
     invoice_items = repository.random
-    assert_instance_of(Invoice_Items, invoice_items)
+    assert_instance_of(InvoiceItems, invoice_items)
   end
 
   def test_can_retrieve_attribute_item_id
@@ -36,8 +36,8 @@ class InvoiceItemsRepositoryTest < Minitest::Test
   end
 
   def test_can_retrieve_attribute_unit_price
-    invoice_items = repository.find_by_unit_price(13635)
-    assert_equal 5, invoice_items.quantity
+    invoice_items = repository.find_by_unit_price("76941")
+    assert_equal 8, invoice_items.id
   end
 
   def test_it_can_retrieve_attribute_by_created_at
@@ -71,7 +71,7 @@ class InvoiceItemsRepositoryTest < Minitest::Test
   end
 
   def test_it_can_retrieve_all_attributes_by_unit_price
-    invoice_items = repository.find_all_by_unit_price(13635)
+    invoice_items = repository.find_all_by_unit_price("76941")
     assert_equal 1, invoice_items.count
   end
 
@@ -83,5 +83,17 @@ class InvoiceItemsRepositoryTest < Minitest::Test
   def test_it_can_retrieve_all_attributes_by_updated_at
     invoice_items = repository.find_all_by_updated_at('2012-03-27 14:54:09 UTC')
     assert_equal 15, invoice_items.count
+  end
+
+  def test_delegates_invoice_item_ids_to_sales_engine
+    sales_engine.expect(:invoice_find_items_by_id, nil, [535])
+    repository.find_invoice_items_from_item(535)
+    sales_engine.verify
+  end
+
+  def test_delegates_invoice_item_invoice_ids_to_sales_engine
+    sales_engine.expect(:invoice_find_invoice_items_by_id, nil, [1])
+    repository.find_invoice_items_from_invoice(1)
+    sales_engine.verify
   end
 end
