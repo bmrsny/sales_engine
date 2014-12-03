@@ -1,5 +1,5 @@
 require_relative 'test_helper'
-require_relative '../lib/transactions'
+require_relative '../lib/transaction'
 
 class TransactionTest < Minitest::Test
   attr_reader :transaction,
@@ -16,11 +16,11 @@ class TransactionTest < Minitest::Test
       updated_at: '2012-03-27 14:54:10 UTC'
     }
     @parent     = Minitest::Mock.new
-    @transaction = Transactions.new(data, parent)
+    @transaction = Transaction.new(data, parent)
   end
 
   def test_it_exists
-    assert Transactions
+    assert Transaction
   end
 
   def test_transactions_has_attributes
