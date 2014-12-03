@@ -1,7 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/brandonmrsny/Turing/sales_engine/lib/customer_repository.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/customer_repository.rb": [
         1,
         1,
         1,
@@ -100,7 +100,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/customer.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/customer.rb": [
         1,
         1,
         1,
@@ -125,7 +125,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/csv_handler.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/csv_handler.rb": [
         1,
         null,
         1,
@@ -134,7 +134,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/customer_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/customer_test.rb": [
         1,
         1,
         null,
@@ -177,10 +177,10 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/integration_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/integration_test.rb": [
 
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/invoice_items_repository_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/invoice_items_repository_test.rb": [
         1,
         1,
         null,
@@ -281,7 +281,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/invoice_item_repository.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/invoice_item_repository.rb": [
         1,
         1,
         1,
@@ -388,17 +388,17 @@
         1,
         null,
         null,
+        3,
+        null,
+        null,
+        1,
+        1,
         4,
-        null,
-        null,
-        1,
-        1,
-        4,
         1,
         null,
         null,
         1,
-        3,
+        2,
         null,
         null,
         null,
@@ -407,16 +407,16 @@
         null,
         null,
         null,
-        3,
-        3,
+        2,
+        2,
         null,
         null,
         1,
-        78,
+        51,
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/invoice_item.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/invoice_item.rb": [
         1,
         1,
         null,
@@ -428,14 +428,14 @@
         null,
         null,
         1,
-        846,
-        846,
-        846,
-        846,
-        846,
-        846,
-        846,
-        846,
+        845,
+        845,
+        845,
+        845,
+        845,
+        845,
+        845,
+        845,
         null,
         null,
         1,
@@ -447,7 +447,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/invoice_items_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/invoice_items_test.rb": [
         1,
         1,
         null,
@@ -492,7 +492,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/invoice_repository_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/invoice_repository_test.rb": [
         1,
         1,
         null,
@@ -616,7 +616,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/invoice_repository.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/invoice_repository.rb": [
         1,
         1,
         1,
@@ -765,7 +765,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/invoice.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/invoice.rb": [
         1,
         1,
         null,
@@ -813,7 +813,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/invoices_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/invoices_test.rb": [
         1,
         1,
         null,
@@ -873,7 +873,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/item_repository_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/item_repository_test.rb": [
         1,
         1,
         null,
@@ -983,7 +983,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/item_repository.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/item_repository.rb": [
         1,
         1,
         1,
@@ -1079,7 +1079,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/item.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/item.rb": [
         1,
         1,
         null,
@@ -1110,7 +1110,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/item_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/item_test.rb": [
         1,
         1,
         null,
@@ -1158,7 +1158,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/merchant_repository_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/merchant_repository_test.rb": [
         1,
         1,
         null,
@@ -1247,7 +1247,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/merchant_repository.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/merchant_repository.rb": [
         1,
         1,
         1,
@@ -1336,7 +1336,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/merchant.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/merchant.rb": [
         1,
         1,
         1,
@@ -1358,7 +1358,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/merchant_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/merchant_test.rb": [
         1,
         1,
         null,
@@ -1401,7 +1401,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/sales_engine_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/sales_engine_test.rb": [
         1,
         1,
         1,
@@ -1526,7 +1526,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/sales_engine.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/sales_engine.rb": [
         1,
         1,
         1,
@@ -1629,7 +1629,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/transaction.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/transaction.rb": [
         1,
         1,
         null,
@@ -1657,7 +1657,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/lib/transaction_repository.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/lib/transaction_repository.rb": [
         1,
         1,
         1,
@@ -1788,7 +1788,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/transaction_repository_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/transaction_repository_test.rb": [
         1,
         1,
         null,
@@ -1885,7 +1885,7 @@
         null,
         null
       ],
-      "/Users/brandonmrsny/Turing/sales_engine/test/transaction_test.rb": [
+      "/Users/cluhring/Turing/Week5/sales_engine/test/transaction_test.rb": [
         1,
         1,
         null,
@@ -1928,6 +1928,6 @@
         null
       ]
     },
-    "timestamp": 1417639591
+    "timestamp": 1417641247
   }
 }

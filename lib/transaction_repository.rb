@@ -101,8 +101,8 @@ class TransactionRepository
     repository
   end
 
-  def find_invoice_from(id)
-    sales_engine.transaction_find_invoice_by_id(id)
+  def find_transactions_from(id)
+    sales_engine.find_transaction_from_invoice_id(id)
   end
 
   def inspect

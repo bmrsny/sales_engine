@@ -36,8 +36,8 @@ class SalesEngine
     @invoice_repository = InvoiceRepository.new(dir + "/invoices.csv", self)
   end
 
-  def find_transactions_from_invoice_id(id)
-    invoice_repository.find_all_by_transaction_id(id)
+  def find_transaction_from_invoice_id(id)
+    invoice_repository.find_by_id(id)
   end
 
   def find_items_from_merchant(id)
