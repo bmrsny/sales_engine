@@ -102,16 +102,22 @@ class SalesEngineTest < Minitest::Test
   def test_can_find_transactions_from_invoice_id
     trans = sales_engine.transactions_repository.find_all_by_invoice_id(12)
     assert_equal 3, trans.count
-    # assert_instance of Transactions, trans.invoices.first
+    # assert_instance_of Transactions, trans.invoices.first
+    #this test is from invoice to transactions repo not for transactions!!!
   end
 
   def test_can_find_items_from_merchant_id
-    items = sales_engine.items_repository.find_merchants_from(1)
-    assert_equal 15, items.count
+    merchant = sales_engine.merchant_repository.find_by_id(24)
+    assert_equal 1, merchant.items.count
   end
 
   # def test_can_find_items_from_items_id
   #   items = sales_engine.items_repository.find_invoice_items_from(1)
   #   assert_equal 2, items.count
   # end
+
+  def test_can_find_transactions_from_customer_id
+    customer = sales_engine.customer_repository.find_by_id(1)
+    assert_equal 1, customer.transaction.count
+  end
 end

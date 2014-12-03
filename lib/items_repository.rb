@@ -84,11 +84,11 @@ class ItemsRepository
   end
 
   def find_merchants_from(merchant_id)
-    sales_engine.find_items_from_merchant(merchant_id)
+    sales_engine.items_find_merchant_by_merchant_id(merchant_id)
   end
 
   def find_invoice_items_from(id)
-    sales_engine.invoice_items_find_items_by_id(id)
+    sales_engine.items_find_invoice_items_from_items_id(id)
   end
 
 end

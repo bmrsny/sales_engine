@@ -55,7 +55,7 @@ class ItemsRepositoryTest < Minitest::Test
 
     def test_can_find_all_by_id
       item = items.find_all_by_id(1 )
-      assert_equal 1, item.count
+      assert_equal 2, item.count
     end
 
     def test_can_find_all_by_name
@@ -93,7 +93,7 @@ class ItemsRepositoryTest < Minitest::Test
       assert_equal 15, item.count
     end
 
-    def test_it_delegates_items_to_sales_engine
+    def test_it_delegates_merchants_to_sales_engine
       sales_engine.expect(:items_find_merchant_by_merchant_id, nil, [1])
       items.find_merchants_from(1)
       sales_engine.verify

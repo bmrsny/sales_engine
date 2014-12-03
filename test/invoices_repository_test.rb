@@ -110,7 +110,13 @@ class InvoicesRepositoryTest < Minitest::Test
 
   def test_delegates_items_to_sales_engine
     sales_engine.expect(:invoice_find_items_by_id, nil, [1])
-    repository.find_invoices_items_from(1)
+    repository.find_items_from(1)
+    sales_engine.verify
+  end
+
+  def test_delegates_transactions_to_sales_engine
+    sales_engine.expect(:invoices_find_transactions_by_id, nil, [1])
+    repository.find_transactions_from(1)
     sales_engine.verify
   end
 end
