@@ -70,6 +70,14 @@ class SalesEngine
     item_repository.find_by_id(item_id)
   end
 
+  def invoice_item_find_invoice_by_id(invoice_id)
+    invoice_repository.find_all_by_id(invoice_id)
+  end
+
+  def invoice_item_find_items_by_id(item_id)
+    item_repository.find_by_id(item_id)
+  end
+
   def invoice_find_items_by_id(invoice_id)
     invoice_items = invoice_find_invoice_items_by_id(invoice_id)
     invoice_items.map {|invoice_item| invoice_items_find_items_by_id(invoice_item.item_id)}

@@ -30,13 +30,13 @@ class InvoiceItemTest < Minitest::Test
   end
 
   def test_can_find_invoice_items_by_invoice_id
-    parent.expect(:find_invoice_items_from_invoice, nil, [1])
+    parent.expect(:find_invoice_from, nil, [1])
     invoice_item.invoice
     parent.verify
   end
 
   def test_can_find_invoice_items_by_item_id
-    parent.expect(:find_invoice_items_from_item, nil, [534])
+    parent.expect(:find_item_from, nil, [534])
     invoice_item.item
     parent.verify
   end
