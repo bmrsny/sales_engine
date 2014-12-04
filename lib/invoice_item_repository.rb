@@ -93,7 +93,7 @@ class InvoiceItemRepository
   end
 
   def find_invoice_items_from_item(item_id)
-    sales_engine.invoice_find_items_by_id(item_id)
+    sales_engine.(item_id)
   end
 
   def inspect

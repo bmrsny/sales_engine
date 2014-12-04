@@ -36,7 +36,7 @@ class SalesEngine
     @invoice_repository = InvoiceRepository.new(dir + "/invoices.csv", self)
   end
 
-  def find_transaction_from_invoice_id(id)
+  def find_transaction_from_invoice_id(id) ### rename this very confusing
     invoice_repository.find_by_id(id)
   end
 
@@ -53,7 +53,9 @@ class SalesEngine
   end
 
   def invoice_find_merchant_by_id(id)
-    merchant_repository.find_all_by_id(id)
+    merchant_repository.find_by_id(id)
+#
+
   end
 
   def invoice_find_customer_by_id(id)
@@ -66,7 +68,6 @@ class SalesEngine
 
   def invoice_items_find_items_by_id(item_id)
     item_repository.find_by_id(item_id)
-    # require "pry" ; binding.pry
   end
 
   def invoice_find_items_by_id(invoice_id)
@@ -89,7 +90,8 @@ class SalesEngine
   end
 
   def find_customer_transactions(id)
-    invoice_repository.find_transactions_from(id)
+    invoices = invoice_repository.find_all_by_customer_id(id)
+    invoices.map {|invoice| transaction_repository.find_all_by_invoice_id(invoice.id) }.flatten
   end
 
   def items_find_merchant_by_merchant_id(merchant_id)
@@ -98,5 +100,17 @@ class SalesEngine
 
   def items_find_invoice_items_from_items_id(id)
     invoice_item_repository.find_all_by_item_id(id)
+  end
+
+  def find_customers_favorite_merchant(id)
+    transactions = find_customer_transactions(id)
+    successful_transactions = transactions.select {|transaction| transaction.result == "success"}
+    merchants = successful_transactions.map {|transaction| find_merchant_from_transaction(transaction.id)}
+    merchants.max_by {|merchant| merchants.count(merchant)}
+  end
+
+  def find_merchant_from_transaction(transaction_id)
+    invoice = find_transaction_from_invoice_id(transaction_id)
+    invoice_find_merchant_by_id(invoice.merchant_id)
   end
 end
