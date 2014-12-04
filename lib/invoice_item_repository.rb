@@ -45,7 +45,6 @@ class InvoiceItemRepository
 
   def find_by_quantity(quantity)
     repository.find { |object| quantity == object.quantity }
-
   end
 
   def find_by_unit_price(unit_price)
@@ -88,12 +87,12 @@ class InvoiceItemRepository
     repository.find_all { |object| criteria == object.updated_at }
   end
 
-  def find_invoice_items_from_invoice(invoice_id)
-    sales_engine.invoice_find_invoice_items_by_id(invoice_id)
+  def find_invoice_from(invoice_id)
+    sales_engine.invoice_item_find_invoice_by_id(invoice_id)
   end
 
-  def find_invoice_items_from_item(item_id)
-    sales_engine.invoice_find_items_by_id(item_id)
+  def find_item_from(item_id)
+    sales_engine.invoice_item_find_items_by_id(item_id)
   end
 
   def inspect

@@ -85,15 +85,15 @@ class InvoiceItemRepositoryTest < Minitest::Test
     assert_equal 15, invoice_items.count
   end
 
-  def test_delegates_invoice_item_ids_to_sales_engine
-    sales_engine.expect(:invoice_find_items_by_id, nil, [535])
-    repository.find_invoice_items_from_item(535)
+  def test_delegates_item_id_to_sales_engine
+    sales_engine.expect(:invoice_item_find_items_by_id, nil, [535])
+    repository.find_item_from(535)
     sales_engine.verify
   end
 
-  def test_delegates_invoice_item_invoice_ids_to_sales_engine
-    sales_engine.expect(:invoice_find_invoice_items_by_id, nil, [1])
-    repository.find_invoice_items_from_invoice(1)
+  def test_delegates_invoice_id_to_sales_engine
+    sales_engine.expect(:invoice_item_find_invoice_by_id, nil, [1])
+    repository.find_invoice_from(1)
     sales_engine.verify
   end
 end
