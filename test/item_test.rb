@@ -27,6 +27,7 @@ class ItemTest < Minitest::Test
     assert_equal 1, repository.id
     assert_equal "Item Qui Esse", repository.name
     assert_includes(repository.description,"Nihil autem sit odio")
+    assert_equal BigDecimal.new('75107')/100, repository.unit_price
     assert_equal 3, repository.merchant_id
     assert_equal "2012-03-27 14:53:59 UTC", repository.created_at
     assert_equal "2012-03-27 14:53:59 UTC", repository.updated_at
