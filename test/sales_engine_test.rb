@@ -45,7 +45,7 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_can_find_invoice_from_merchant_id
-    merchant = sales_engine.merchant_repository.find_invoice_from(26)
+    merchant = sales_engine.merchant_repository.find_invoice_from(10)
     assert_equal 1, merchant.count
   end
 
@@ -61,7 +61,7 @@ class SalesEngineTest < Minitest::Test
 
   def test_can_find_merchants_from_invoice_id
     invoice = sales_engine.invoice_repository.find_merchants_from(10)
-    assert_equal 1, invoice.count
+    assert_instance_of Merchant, invoice
   end
 
   def test_can_find_invoice_items_from_invoice_id
@@ -118,6 +118,11 @@ class SalesEngineTest < Minitest::Test
 
   def test_can_find_transactions_from_customer_id
     customer = sales_engine.customer_repository.find_by_id(1)
-    assert_equal 1, customer.transactions.count
+    assert_equal 4, customer.transactions.count
+  end
+
+  def test_can_find_favorite_merchant_from_transactions
+    customer = sales_engine.customer_repository.find_by_id(13)
+    assert_instance_of Merchant, customer.favorite_merchant
   end
 end

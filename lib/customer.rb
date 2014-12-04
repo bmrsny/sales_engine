@@ -20,4 +20,13 @@ class Customer
   def transactions
     repository.find_transactions(id)
   end
+
+  def favorite_merchant
+    repository.find_favorite_merchant(id)
+    #successful_transactions.map {|transaction|}
+  end
+
+  # def successful_transactions
+  #   transactions.select {|transaction| transaction.result == "success"}
+  # end
 end

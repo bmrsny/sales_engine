@@ -94,4 +94,8 @@ class CustomerRepository
     def find_transactions(id)
       sales_engine.find_customer_transactions(id)
     end
+
+    def find_favorite_merchant(id)
+      sales_engine.find_customers_favorite_merchant(id)
+    end
 end

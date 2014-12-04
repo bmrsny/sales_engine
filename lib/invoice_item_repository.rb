@@ -90,9 +90,13 @@ class InvoiceItemRepository
   def find_invoice_from(invoice_id)
     sales_engine.invoice_item_find_invoice_by_id(invoice_id)
   end
+  #
+  # def find_invoice_items_from_item(item_id)
+  #   sales_engine.(item_id)
 
   def find_item_from(item_id)
     sales_engine.invoice_item_find_items_by_id(item_id)
+
   end
 
   def inspect
@@ -101,7 +105,6 @@ class InvoiceItemRepository
 
   def add(new_invoice, items)
     grouped_items = group_items(items)
-
     # grouped_items = items.group_by {|item| item.id }
     grouped_items.map {|item|create_invoice_item(new_invoice, item) }
   end
